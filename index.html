@@ -532,6 +532,7 @@
           <p class="text-xs uppercase tracking-widest text-amber-100 font-semibold">Insya Allah Diselenggarakan Pada</p>
           <h3 class="font-serif-title text-2xl sm:text-3xl font-bold mt-1 text-white">AHAD PON</h3>
           <p class="text-lg font-bold text-amber-200">22 November 2026 M</p>
+          <p class="text-base font-semibold text-white mt-1">Pukul 07.30 WIB</p>
 
           <!-- Countdown Timer -->
           <div class="grid grid-cols-4 gap-2 my-5">
@@ -842,8 +843,8 @@
       pContainer.appendChild(p);
     }
 
-    // 5. Live Countdown Timer (22 November 2026 08:00 WIB)
-    const targetDate = new Date("2026-11-22T08:00:00+07:00").getTime();
+    // 5. Live Countdown Timer (22 November 2026 07:30 WIB)
+    const targetDate = new Date("2026-11-22T07:30:00+07:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
       const diff = targetDate - now;
