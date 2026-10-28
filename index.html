@@ -377,8 +377,8 @@
   </audio>
 
   <!-- TOMBOL FLOATING MUSIK (PLAY/PAUSE) + KARAKTER ABSEN -->
-  <div id="musicControl" class="fixed bottom-5 right-5 z-40 hidden flex-col items-center gap-0.5">
-    <img id="attendanceCharacter" src="absen-1.webp" alt="Karakter absen" class="attendance-character">
+  <div id="musicControl" class="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 hidden flex-col items-end gap-1">
+    <img id="attendanceCharacter" src="absen-1.webp?v=2" alt="Karakter absen" class="attendance-character">
     <button id="musicBtn" onclick="toggleMusic()" aria-label="Kontrol Musik"
       class="w-11 h-11 rounded-full bg-gold-gradient text-white shadow-xl border-2 border-amber-200 items-center justify-center animate-spin-music hover:scale-105 active:scale-95 transition">
       <span id="musicIcon" class="text-base">🎵</span>
@@ -742,7 +742,7 @@
     const musicBtn = document.getElementById('musicBtn');
     const musicIcon = document.getElementById('musicIcon');
     const attendanceCharacter = document.getElementById('attendanceCharacter');
-    const attendanceFrames = ['absen-1.webp', 'absen-2.webp', 'absen-3.webp'];
+    const attendanceFrames = ['absen-1.webp?v=2', 'absen-2.webp?v=2', 'absen-3.webp?v=2'];
     let attendanceFrameIndex = 0;
     let isPlaying = false;
 
