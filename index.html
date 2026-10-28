@@ -755,7 +755,7 @@
       document.getElementById('coverGate').classList.add('open');
       document.body.classList.remove('overflow-hidden');
       
-      // Tampilkan tombol musik langsung; karakter mulai muncul setelah 30 detik
+      // Tampilkan tombol musik langsung; karakter mulai muncul setelah 15 detik
       musicControl.classList.remove('hidden');
       musicControl.classList.add('flex');
 
@@ -766,7 +766,7 @@
 
         attendanceCharacter.classList.add('is-visible');
         setInterval(toggleAttendanceCharacter, 10000);
-      }, 30000);
+      }, 15000);
       
       bgMusic.play().then(() => {
         isPlaying = true;
