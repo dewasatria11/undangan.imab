@@ -52,8 +52,8 @@
       50% { transform: translateY(-5px) rotate(3deg); }
     }
     .attendance-character {
-      width: 100px;
-      height: 100px;
+      width: 115px;
+      height: 115px;
       object-fit: contain;
       animation: attendanceFloat 1.8s ease-in-out infinite;
       filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.22));
@@ -749,17 +749,23 @@
     setInterval(() => {
       attendanceFrameIndex = (attendanceFrameIndex + 1) % attendanceFrames.length;
       attendanceCharacter.src = attendanceFrames[attendanceFrameIndex];
-    }, 450);
+    }, 800);
 
     function bukaUndangan() {
       document.getElementById('coverGate').classList.add('open');
       document.body.classList.remove('overflow-hidden');
       
-      // Tampilkan tombol musik langsung; karakter absen muncul setelah 30 detik
+      // Tampilkan tombol musik langsung; karakter mulai muncul setelah 30 detik
       musicControl.classList.remove('hidden');
       musicControl.classList.add('flex');
+
       setTimeout(() => {
+        const toggleAttendanceCharacter = () => {
+          attendanceCharacter.classList.toggle('is-visible');
+        };
+
         attendanceCharacter.classList.add('is-visible');
+        setInterval(toggleAttendanceCharacter, 10000);
       }, 30000);
       
       bgMusic.play().then(() => {
