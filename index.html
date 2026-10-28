@@ -46,6 +46,20 @@
       animation: spinSlow 6s linear infinite;
     }
 
+    /* Karakter absen kecil di atas tombol musik */
+    @keyframes attendanceFloat {
+      0%, 100% { transform: translateY(0) rotate(-3deg); }
+      50% { transform: translateY(-5px) rotate(3deg); }
+    }
+    .attendance-character {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      animation: attendanceFloat 1.8s ease-in-out infinite;
+      filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.22));
+      pointer-events: none;
+    }
+
     /* Efek Kilau Cahaya Lewat (Shimmer Button) */
     @keyframes shimmer {
       0% { transform: translateX(-100%); }
@@ -355,11 +369,14 @@
     <source src="musik.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- TOMBOL FLOATING MUSIK (PLAY/PAUSE) -->
-  <button id="musicBtn" onclick="toggleMusic()" aria-label="Kontrol Musik"
-    class="fixed bottom-5 right-5 z-40 hidden w-11 h-11 rounded-full bg-gold-gradient text-white shadow-xl border-2 border-amber-200 items-center justify-center animate-spin-music hover:scale-105 active:scale-95 transition">
-    <span id="musicIcon" class="text-base">🎵</span>
-  </button>
+  <!-- TOMBOL FLOATING MUSIK (PLAY/PAUSE) + KARAKTER ABSEN -->
+  <div id="musicControl" class="fixed bottom-5 right-5 z-40 hidden flex-col items-center gap-0.5">
+    <img id="attendanceCharacter" src="absen-1.webp" alt="Karakter absen" class="attendance-character">
+    <button id="musicBtn" onclick="toggleMusic()" aria-label="Kontrol Musik"
+      class="w-11 h-11 rounded-full bg-gold-gradient text-white shadow-xl border-2 border-amber-200 items-center justify-center animate-spin-music hover:scale-105 active:scale-95 transition">
+      <span id="musicIcon" class="text-base">🎵</span>
+    </button>
+  </div>
 
   <!-- ================= LAYAR PEMBUKA (OPENING COVER GATE) ================= -->
   <div id="coverGate" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/95 backdrop-blur-md p-4">
@@ -714,17 +731,26 @@
 
     // 3. Kontrol Audio & Buka Cover Undangan
     const bgMusic = document.getElementById('bgMusic');
+    const musicControl = document.getElementById('musicControl');
     const musicBtn = document.getElementById('musicBtn');
     const musicIcon = document.getElementById('musicIcon');
+    const attendanceCharacter = document.getElementById('attendanceCharacter');
+    const attendanceFrames = ['absen-1.webp', 'absen-2.webp', 'absen-3.webp'];
+    let attendanceFrameIndex = 0;
     let isPlaying = false;
+
+    setInterval(() => {
+      attendanceFrameIndex = (attendanceFrameIndex + 1) % attendanceFrames.length;
+      attendanceCharacter.src = attendanceFrames[attendanceFrameIndex];
+    }, 450);
 
     function bukaUndangan() {
       document.getElementById('coverGate').classList.add('open');
       document.body.classList.remove('overflow-hidden');
       
-      // Tampilkan tombol musik & putar otomatis
-      musicBtn.classList.remove('hidden');
-      musicBtn.classList.add('flex');
+      // Tampilkan karakter absen dan tombol musik & putar otomatis
+      musicControl.classList.remove('hidden');
+      musicControl.classList.add('flex');
       
       bgMusic.play().then(() => {
         isPlaying = true;
