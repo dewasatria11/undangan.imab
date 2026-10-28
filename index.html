@@ -52,12 +52,19 @@
       50% { transform: translateY(-5px) rotate(3deg); }
     }
     .attendance-character {
-      width: 50px;
-      height: 50px;
+      width: 100px;
+      height: 100px;
       object-fit: contain;
       animation: attendanceFloat 1.8s ease-in-out infinite;
       filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.22));
       pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .attendance-character.is-visible {
+      opacity: 1;
+      visibility: visible;
     }
 
     /* Efek Kilau Cahaya Lewat (Shimmer Button) */
@@ -748,9 +755,12 @@
       document.getElementById('coverGate').classList.add('open');
       document.body.classList.remove('overflow-hidden');
       
-      // Tampilkan karakter absen dan tombol musik & putar otomatis
+      // Tampilkan tombol musik langsung; karakter absen muncul setelah 30 detik
       musicControl.classList.remove('hidden');
       musicControl.classList.add('flex');
+      setTimeout(() => {
+        attendanceCharacter.classList.add('is-visible');
+      }, 30000);
       
       bgMusic.play().then(() => {
         isPlaying = true;
